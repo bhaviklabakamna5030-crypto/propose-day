@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Propose Day 💕 - For Mansi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: clamp(1.8em, 5vw, 2.5em);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+            word-wrap: break-word;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .message {
+            font-size: clamp(1em, 3vw, 1.3em);
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .message .name {
+            color: #e91e63;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .message .heart {
+            color: #e91e63;
+            font-size: 1.5em;
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: clamp(1em, 3vw, 1.2em);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-width: 120px;
+            touch-action: manipulation;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .yes-btn:hover, .yes-btn:active {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+            position: relative;
+        }
+
+        .no-btn:hover, .no-btn:active {
+            transform: scale(1.05);
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .hearts {
+            position: fixed;
+            font-size: clamp(1.5em, 4vw, 2em);
+            color: #e91e63;
+            animation: floatUp 3s ease-out forwards;
+            pointer-events: none;
+            z-index: 1001;
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-100vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .success-message {
+            display: none;
+            font-size: clamp(1.5em, 4vw, 2em);
+            color: #667eea;
+            margin-top: 30px;
+            animation: bounce 0.5s ease;
+            line-height: 1.5;
+        }
+
+        .love-message {
+            display: none;
+            font-size: clamp(1.2em, 3.5vw, 1.5em);
+            color: #e91e63;
+            margin-top: 20px;
+            animation: bounce 0.5s ease 0.5s both;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 1s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+
+        /* Mobile specific styles */
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+
+            .message {
+                font-size: 1em;
+                margin-bottom: 25px;
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 1em;
+                min-width: 100px;
+            }
+
+            .buttons {
+                gap: 10px;
+            }
+
+            .success-message {
+                font-size: 1.5em;
+            }
+
+            .love-message {
+                font-size: 1.2em;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .container {
+                padding: 25px 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+                min-width: 90px;
+            }
+        }
+
+        /* Landscape mobile */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .container {
+                padding: 20px 25px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 10px;
+            }
+
+            .message {
+                font-size: 0.9em;
+                margin-bottom: 15px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="romanticSong" loop preload="auto" playsinline>
+        <!-- You can replace this with your favorite Hindi romantic song URL -->
+        <source src="propose-day\BORDER_2.mp3" type="audio/mpeg">
+        <!-- Alternative: Use a local file by uncommenting the line below and adding your song file -->
+        <!-- <source src="romantic-song.mp3" type="audio/mpeg"> -->
+    </audio>
+
+    <div class="container">
+        <h1>💕 Propose Day 💕</h1>
+        <div class="message">
+            <p>Dear <span class="name">Mansi</span>,</p>
+            <p>You make every day brighter, every moment special, and every smile more beautiful.</p>
+            <p>Will you be mine? <span class="heart">💖</span></p>
+        </div>
+        <div class="buttons">
+            <button class="yes-btn" onclick="handleYes()">Yes! 💕</button>
+            <button class="no-btn" id="noBtn" onclick="handleNo()">No</button>
+        </div>
+        <div class="success-message" id="successMessage">
+            Yay! You made my day! 🎉💖✨
+        </div>
+        <div class="love-message" id="loveMessage">
+            I love you too, <span class="name">Mansi</span>! 💕 Forever and always! 🌟
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration"></div>
+
+    <script>
+        let noClickCount = 0;
+        let isYesClicked = false;
+
+        // Function to play the romantic Hindi song
+        function playRomanticSong() {
+            const audio = document.getElementById('romanticSong');
+            audio.volume = 0.5; // Set volume to 50%
+            audio.muted = false;
+            
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Song is playing
+                }).catch(error => {
+                    console.log('Could not play audio:', error);
+                });
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b', '#6c5ce7', '#a29bfe'];
+            const celebration = document.getElementById('celebration');
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                celebration.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'hearts';
+                    heart.textContent = '💖';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.bottom = '-50px';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 100);
+            }
+        }
+
+        function handleYes() {
+            if (isYesClicked) return;
+            isYesClicked = true;
+            
+            // Play the romantic Hindi song
+            playRomanticSong();
+            
+            const container = document.querySelector('.container');
+            container.style.animation = 'pulse 0.5s ease 3';
+            
+            createConfetti();
+            createHearts();
+            
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            
+            // Show love message after a short delay
+            setTimeout(() => {
+                const loveMessage = document.getElementById('loveMessage');
+                loveMessage.style.display = 'block';
+            }, 1000);
+            
+            // Play a fun sound effect
+            playCelebrationSound();
+            
+            // Hide the buttons
+            document.querySelector('.buttons').style.display = 'none';
+            
+            // Change the message
+            document.querySelector('.message').innerHTML = 
+                '<p style="font-size: clamp(1.2em, 3vw, 1.5em); color: #667eea;">This is the best day ever! 🌟</p>' +
+                '<p style="font-size: clamp(1em, 2.5vw, 1.2em); margin-top: 20px;">You just made my heart skip a beat! 💓</p>';
+        }
+
+        function handleNo() {
+            noClickCount++;
+            const noBtn = document.getElementById('noBtn');
+            
+            if (noClickCount === 1) {
+                noBtn.textContent = 'Are you sure? 😊';
+                noBtn.style.transform = 'translateX(20px)';
+            } else if (noClickCount === 2) {
+                noBtn.textContent = 'Really? 🥺';
+                noBtn.style.transform = 'translateX(-20px)';
+            } else if (noClickCount === 3) {
+                noBtn.textContent = 'Please? 💕';
+                noBtn.style.transform = 'translateY(-20px)';
+            } else {
+                // Make the button run away
+                const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+                const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+                
+                noBtn.style.position = 'fixed';
+                noBtn.style.left = Math.max(10, Math.min(maxX, Math.random() * maxX)) + 'px';
+                noBtn.style.top = Math.max(10, Math.min(maxY, Math.random() * maxY)) + 'px';
+                noBtn.style.transform = 'scale(0.9)';
+                noBtn.style.zIndex = '10000';
+                
+                // Change text to something playful
+                const messages = ['Try again! 😄', 'Catch me! 🏃', 'Almost! 😉', 'Keep trying! 💪'];
+                noBtn.textContent = messages[Math.floor(Math.random() * messages.length)];
+                
+                // Add some sparkles
+                createSparkles(noBtn);
+            }
+            
+            // Reset transform after animation
+            setTimeout(() => {
+                if (noClickCount < 4) {
+                    noBtn.style.transform = '';
+                }
+            }, 300);
+        }
+
+        function createSparkles(element) {
+            for (let i = 0; i < 10; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                const rect = element.getBoundingClientRect();
+                sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }
+
+        function playCelebrationSound() {
+            // Create a simple musical tone using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Play a cheerful melody
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C, E, G, C (C major chord)
+                notes.forEach((freq, index) => {
+                    setTimeout(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = freq;
+                        oscillator.type = 'sine';
+                        
+                        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.5);
+                    }, index * 100);
+                });
+            } catch (e) {
+                console.log('Audio context not available');
+            }
+        }
+
+        // Add some floating hearts in the background
+        function createBackgroundHearts() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.style.position = 'fixed';
+                    heart.style.fontSize = 'clamp(1.5em, 3vw, 2em)';
+                    heart.style.color = 'rgba(255, 255, 255, 0.3)';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = '100%';
+                    heart.style.animation = 'floatUp 8s linear infinite';
+                    heart.textContent = '💖';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1';
+                    document.body.appendChild(heart);
+                }, i * 2000);
+            }
+        }
+
+        // Start background animation
+        createBackgroundHearts();
+        setInterval(createBackgroundHearts, 10000);
+
+        // Handle orientation change for mobile
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
+        });
+    </script>
+</body>
+</html>
